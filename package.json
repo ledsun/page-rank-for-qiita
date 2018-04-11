@@ -1,0 +1,28 @@
+{
+  "name": "qiita_page_rank",
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/ledsun/qiita_page_rank/issues"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "libxmljs": "^0.18.7",
+    "lodash": "^4.17.5",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2",
+    "sleep-promise": "^4.1.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/ledsun/qiita_page_rank#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ledsun/qiita_page_rank.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
