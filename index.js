@@ -14,8 +14,9 @@ recentItemsStream
 
 ;
 (async () => {
+  console.log('Please wait ...')
   // ITEM APIに指定するページの範囲
-  // 1リクエストあたり100件の制限があるので、ページ数を変えて繰り返し実行します。
+  // 1リクエストあたり100件でページ分割されています。
   for (page of _.range(1, 5)) {
     recentItemsStream.write([page, TAG])
   }
