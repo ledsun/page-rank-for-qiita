@@ -10,8 +10,7 @@
     "libxmljs": "^0.18.7",
     "lodash": "^4.17.5",
     "request": "^2.85.0",
-    "request-promise": "^4.2.2",
-    "sleep-promise": "^4.1.0"
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {},
   "homepage": "https://github.com/ledsun/qiita_page_rank#readme",
