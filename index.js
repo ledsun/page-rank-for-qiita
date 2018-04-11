@@ -3,21 +3,47 @@ const recentItemsStream = require('./lib/recent-items-stream')
 const fetchPageRankStream = require('./lib/fetch-page-rank-stream')
 const templateStream = require('./lib/template-stream')
 const hasPageRankStream = require('./lib/has-page-rank-stream')
+const {
+  Readable,
+  Transform
+} = require('stream')
 
 const TAG = process.argv[2]
 
-recentItemsStream
+const pages = _.range(1, 101)
+const pageStream = new Readable({
+  objectMode: true,
+  read(size) {
+    const page = pages.shift()
+    if (page) {
+      this.push([page, TAG])
+    } else {
+      this.push(null)
+    }
+  }
+})
+
+// 一定数見つけたら検索をやめます
+let count = 0
+const limitStream = new Transform({
+  readableObjectMode: true,
+  writableObjectMode: true,
+  transform(chunk, encoding, callback) {
+    count++;
+    if (count > 35) {
+      // https://stackoverflow.com/questions/28621175/node-js-how-to-stop-a-piped-stream-conditionally
+      recentItemsStream.unpipe(fetchPageRankStream)
+      fetchPageRankStream.end()
+    }
+    callback()
+  }
+})
+
+const hoge = pageStream
+  .pipe(recentItemsStream)
   .pipe(fetchPageRankStream)
   .pipe(hasPageRankStream)
   .pipe(templateStream)
-  .pipe(process.stdout)
 
-;
-(async () => {
-  console.log('Please wait ...')
-  // ITEM APIに指定するページの範囲
-  // 1リクエストあたり100件でページ分割されています。
-  for (page of _.range(1, 5)) {
-    recentItemsStream.write([page, TAG])
-  }
-})()
+hoge.pipe(limitStream)
+hoge.pipe(process.stdout)
