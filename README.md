@@ -37,7 +37,7 @@ env ACCESS_TOKEN=YOUR_ACCESS_TOKEN panq bash
 
 ページランクが1以上の記事が見つかるまで探し続けるので、結果が出るまで数分掛かることがあります。
 
-```sh
+```
 Gitのブランチ名を返すエイリアスを設定したら地味に捗った	https://qiita.com/kmszk/items/3de61ef75e30dedd6f6e	1
 AtCoderに登録したら解くべき精選過去問 10 問を bash で解いてみた	https://qiita.com/yuizumi/items/d55f9dfe56fa2bf12d94	1
 AtCoder に登録したら解くべき精選過去問 10 問を Bash で解いてみた	https://qiita.com/cympfh/items/b860ecb5f5415b15f3c9	3
