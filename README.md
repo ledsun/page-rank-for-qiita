@@ -31,7 +31,7 @@ npm i -g page-rank-for-qiita
 env ACCESS_TOKEN=YOUR_ACCESS_TOKEN panq bash
 ```
 
-アクセストークンは [Applications - Qiita](Applications - Qiita) で生成してください。
+アクセストークンは [Applications - Qiita](https://qiita.com/settings/applications) にて生成してください。
 
 ### Results
 
