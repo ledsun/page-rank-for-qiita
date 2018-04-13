@@ -1,8 +1,11 @@
 {
-  "name": "qiita_page_rank",
-  "version": "1.0.0",
+  "name": "page-rank-for-qiita",
+  "version": "0.0.1",
+  "bin": {
+    "panq": "bin/panq"
+  },
   "bugs": {
-    "url": "https://github.com/ledsun/qiita_page_rank/issues"
+    "url": "https://github.com/ledsun/page-rank-for-qiita/issues"
   },
   "dependencies": {
     "handlebars": "^4.0.11",
@@ -13,14 +16,14 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {},
-  "homepage": "https://github.com/ledsun/qiita_page_rank#readme",
+  "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ledsun/qiita_page_rank.git"
+    "url": "git+https://github.com/ledsun/page-rank-for-qiita.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
