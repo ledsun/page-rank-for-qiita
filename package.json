@@ -1,6 +1,6 @@
 {
   "name": "page-rank-for-qiita",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "bin": {
     "panq": "bin/panq",
     "panq-server": "bin/panq-server"
@@ -18,6 +18,10 @@
     "websocket": "^1.0.25"
   },
   "devDependencies": {},
+  "files": [
+    "bin/*",
+    "lib/**"
+  ],
   "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
   "license": "MIT",
