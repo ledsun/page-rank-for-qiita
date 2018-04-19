@@ -1,11 +1,12 @@
+#!/usr/bin/env node
+
 const http = require('http')
 const WebSocketServer = require('websocket')
   .server
-const html = require('./lib/server/html')
-const startSearh = require('./lib/server/start-search')
+const html = require('../lib/server/html')
+const startSearh = require('../lib/server/start-search')
 
-const HOSTNAME = '127.0.0.1'
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const httpServer = http.createServer((req, res) => {
   res.statusCode = 200
   res.setHeader('Content-Type', 'text/html')
@@ -15,7 +16,7 @@ const wsServer = new WebSocketServer({
   httpServer
 })
 
-httpServer.listen(PORT, HOSTNAME, () => console.log(`Server running at http://${HOSTNAME}:${PORT}/`))
+httpServer.listen(PORT, () => console.log(`Server running at port:${PORT}`))
 wsServer.on('request', (request) => {
   const connection = request.accept(null, request.origin)
   connection.on('message', (message) => {

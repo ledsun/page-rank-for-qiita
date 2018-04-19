@@ -24,6 +24,7 @@ npm i -g page-rank-for-qiita
 ```
 
 ## Usage
+### CLI
 
 環境変数でQiita APIへのアクセストークンを指定してください。
 
@@ -33,7 +34,7 @@ env ACCESS_TOKEN=YOUR_ACCESS_TOKEN panq bash
 
 アクセストークンは [Applications - Qiita](https://qiita.com/settings/applications) にて生成してください。
 
-### Results
+#### Results
 
 ページランクが1以上の記事が見つかるまで探し続けるので、結果が出るまで数分掛かることがあります。
 
@@ -83,10 +84,18 @@ bashの組込みコマンド自作によるスクリプトの高速化	https://q
 結果は得られるたびに保存しています。
 コマンドを途中で止めても、それまでに得られた結果はキャッシュに保存しています。
 
-### Argument
+#### Argument
 
 引数にはQiitaの記事についたtagを１つだけ指定できます。
 指定しなかった場合は、tagで絞り込みません。
+
+### Server
+
+```
+env ACCESS_TOKEN=YOUR_ACCESS_TOKEN panq-server
+```
+
+http://localhost:3000
 
 ## Motivation
 
