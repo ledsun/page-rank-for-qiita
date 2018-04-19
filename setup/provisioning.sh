@@ -12,19 +12,18 @@ ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   sudo yum -y install gcc-c++
 
   sudo npm i -g forever
-  # Create application directory
-  mkdir panq
 EOF
 
-# Setup node app
-export RSYNC_RSH="ssh  -oStrictHostKeyChecking=no -i $PEM"
-rsync -rav --delete --exclude .git --exclude .gitignore --exclude node_modules --exclude README.md --exclude .DS_Store --exclude setup $(pwd)/ ec2-user@$HOST:panq
+# Send secrets
+scp -i $PEM .env ec2-user@$HOST:.
 
-ssh  -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
-  cd panq
-  npm i
+# Setup the server
+ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   source .env
-  sudo -E forever start bin/panq-server
+
+  # gitを参照しているとglobalインストールできない
+  npm i page-rank-for-qiita
+  sudo -E forever start node_modules/page-rank-for-qiita/bin/panq-server
 EOF
 
 echo If you want ssh login the instance:
