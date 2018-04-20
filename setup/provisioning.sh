@@ -21,7 +21,7 @@ scp -i $PEM .env ec2-user@$HOST:.
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   source .env
 
-  # libxmljsを使っているとglobalインストールできない
+  # websocketパッケージを使っているとglobalインストールできない
   npm i page-rank-for-qiita
   sudo -E forever start -o out.log -e err.log \$(npm bin)/panq-server
 EOF
