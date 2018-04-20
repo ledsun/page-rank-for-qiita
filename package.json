@@ -15,6 +15,7 @@
     "parse5": "^4.0.0",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
+    "sleep-promise": "^6.0.0",
     "websocket": "^1.0.25",
     "xmldom": "^0.1.27",
     "xmlserializer": "^0.6.1",
