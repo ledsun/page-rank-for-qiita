@@ -21,9 +21,9 @@ scp -i $PEM .env ec2-user@$HOST:.
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   source .env
 
-  # gitを参照しているとglobalインストールできない
+  # libxmljsを使っているとglobalインストールできない
   npm i page-rank-for-qiita
-  sudo -E forever start node_modules/page-rank-for-qiita/bin/panq-server
+  sudo -E forever start -o out.log -e err.log　$(npm bin)/panq-server
 EOF
 
 echo If you want ssh login the instance:
