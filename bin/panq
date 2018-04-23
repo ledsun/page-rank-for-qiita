@@ -9,7 +9,7 @@ const LimitStream = require('../lib/limit-stream')
 
 const TAG = process.argv[2]
 const pageStream = new PageStream(TAG)
-const recentItemsStream = new RecentItemsStream()
+const recentItemsStream = new RecentItemsStream(pageStream)
 const fetchPageRankStream = new FetchPageRankStream()
 const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream)
 
