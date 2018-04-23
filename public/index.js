@@ -8,7 +8,9 @@ socket.addEventListener('open', (event) => {
     .searchParams
   const tagName = params.get('tag')
   numberOfItems = 0
-  socket.send(tagName)
+
+  // nullを送るを文字列'null'を送ってしまう
+  socket.send(tagName ? tagName : '')
 })
 
 // Listen for messages
