@@ -7,7 +7,7 @@ const static = require('node-static')
 const startSearh = require('../lib/server/start-search')
 
 const PORT = process.env.PORT || 3000
-const file = new static.Server('./public')
+const file = new static.Server(`${__dirname}/../public`)
 const httpServer = http.createServer((req, res) => {
   req.addListener('end', () => file.serve(req, res))
     .resume()
