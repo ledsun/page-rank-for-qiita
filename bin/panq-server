@@ -3,14 +3,14 @@
 const http = require('http')
 const WebSocketServer = require('websocket')
   .server
-const html = require('../lib/server/html')
+const static = require('node-static')
 const startSearh = require('../lib/server/start-search')
 
 const PORT = process.env.PORT || 3000
+const file = new static.Server('./public')
 const httpServer = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/html')
-  res.end(html)
+  req.addListener('end', () => file.serve(req, res))
+    .resume()
 })
 const wsServer = new WebSocketServer({
   httpServer
