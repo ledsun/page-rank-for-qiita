@@ -19,18 +19,14 @@
 
         <div class="col-12 text-left">
           <p>Qiitaの記事のうち、被参照数が1以上の記事を探す検索エンジンです。</p>
-          <p>Qiitaでは、現在、記事の質を判断する指標として「いいね」が使われています。
-            確かに「今、一番注目されている記事」を探すためには良い指標に思えます。
-            ニュースのように話題になる情報を取得するために役立ちます。</p>
+          <p>Qiitaでは、現在、記事の質を判断する指標として「いいね」が使われています。 確かに「今、一番注目されている記事」を探すためには良い指標に思えます。 ニュースのように話題になる情報を取得するために役立ちます。
+          </p>
 
-          <p>一方で、技術情報を検索するシチュエーションは、話題の最新情報を探すだけではありません。
-            ある技術にチャレンジし始めた段階では、少し古くても、ある程度信頼できる記事が欲しいです。
-            技術のジャンルはタグで絞り込むことができますが、そこで得られるリストは、最近「いいね」された記事と、
-            最近投稿された記事です。</p>
+          <p>一方で、技術情報を検索するシチュエーションは、話題の最新情報を探すだけではありません。 ある技術にチャレンジし始めた段階では、少し古くても、ある程度信頼できる記事が欲しいです。 技術のジャンルはタグで絞り込むことができますが、そこで得られるリストは、最近「いいね」された記事と、 最近投稿された記事です。
+          </p>
 
-          <p>これは最近「参照された」「投稿された」記事であって、「信頼できる」記事の指標にはなりません。
-            論文の世界では「被引用数」を使って論文を評価する文化があります。
-            そこでQiitaの記事においても「被参照数」が使えるのではないかと思い、このサイトを作りました。</p>
+          <p>これは最近「参照された」「投稿された」記事であって、「信頼できる」記事の指標にはなりません。 論文の世界では「被引用数」を使って論文を評価する文化があります。 そこでQiitaの記事においても「被参照数」が使えるのではないかと思い、このサイトを作りました。
+          </p>
         </div>
       </div>
     </div>
@@ -78,12 +74,14 @@
   const socket = new WebSocket(`ws://${location.hostname}:${location.port}`)
 
   // Connection opened
-  socket.addEventListener('open', function(event) {
-    socket.send(location.pathname)
+  socket.addEventListener('open', (event) => {
+    const params = (new URL(document.location)).searchParams
+    const tagName = params.get('tag')
+    socket.send(tagName)
   })
 
   // Listen for messages
-  socket.addEventListener('message', function(event) {
+  socket.addEventListener('message', (event) => {
     console.log('Message from server ', event.data)
     const data = JSON.parse(event.data)
     if (data.item) {
@@ -98,7 +96,7 @@
   })
 
   // Connection closed
-  socket.addEventListener('close', function(event) {
+  socket.addEventListener('close', (event) => {
     document.querySelector('.status').innerText = 'Bye Bye, see you!'
   })
 </script>
