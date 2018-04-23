@@ -12,15 +12,18 @@ socket.addEventListener('open', (event) => {
 socket.addEventListener('message', (event) => {
   console.log('Message from server ', event.data)
   const data = JSON.parse(event.data)
+
   if (data.item) {
-    document.querySelector('.list')
-      .innerHTML += `
-    <li>
-      <div class="col-12">
-        <a href="${data.item.url}" target="_blank">${data.item.title}</a>
-      </div>
-    </li>
-    `
+    if (data.item.count > 0) {
+      document.querySelector('.list')
+        .innerHTML += `
+      <li>
+        <div class="col-12">
+          <a href="${data.item.url}" target="_blank">${data.item.title}</a>
+        </div>
+      </li>
+      `
+    }
   }
 })
 
