@@ -18,6 +18,11 @@ socket.addEventListener('message', (event) => {
   console.log('Message from server ', event.data)
   const data = JSON.parse(event.data)
 
+  if (data.tag !== undefined) {
+    document.querySelector('.results')
+      .innerText += ` ${data.tag ? data.tag : 'all'}`
+  }
+
   if (data.item) {
     numberOfItems++;
     document.querySelector('.items')
