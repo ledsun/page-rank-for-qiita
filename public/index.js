@@ -1,10 +1,13 @@
 const socket = new WebSocket(`ws://${location.hostname}:${location.port}`)
 
+let numberOfItems = 0
+
 // Connection opened
 socket.addEventListener('open', (event) => {
   const params = (new URL(document.location))
     .searchParams
   const tagName = params.get('tag')
+  numberOfItems = 0
   socket.send(tagName)
 })
 
@@ -14,6 +17,10 @@ socket.addEventListener('message', (event) => {
   const data = JSON.parse(event.data)
 
   if (data.item) {
+    numberOfItems++;
+    document.querySelector('.items')
+      .innerText = numberOfItems
+
     if (data.item.count > 0) {
       showItem(data.item)
     }
