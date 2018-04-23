@@ -68,37 +68,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+  <script src="./index.js" charset="utf-8"></script>
 </body>
-<script>
-  const socket = new WebSocket(`ws://${location.hostname}:${location.port}`)
-
-  // Connection opened
-  socket.addEventListener('open', (event) => {
-    const params = (new URL(document.location)).searchParams
-    const tagName = params.get('tag')
-    socket.send(tagName)
-  })
-
-  // Listen for messages
-  socket.addEventListener('message', (event) => {
-    console.log('Message from server ', event.data)
-    const data = JSON.parse(event.data)
-    if (data.item) {
-      document.querySelector('.list').innerHTML += `
-      <li>
-        <div class="col-12">
-          <a href="${data.item.url}" target="_blank">${data.item.title}</a>
-        </div>
-      </li>
-      `
-    }
-  })
-
-  // Connection closed
-  socket.addEventListener('close', (event) => {
-    document.querySelector('.status').innerText = 'Bye Bye, see you!'
-  })
-</script>
 
 </html>
