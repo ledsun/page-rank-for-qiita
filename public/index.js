@@ -15,14 +15,7 @@ socket.addEventListener('message', (event) => {
 
   if (data.item) {
     if (data.item.count > 0) {
-      document.querySelector('.list')
-        .innerHTML += `
-      <li>
-        <div class="col-12">
-          <a href="${data.item.url}" target="_blank">${data.item.title}</a>
-        </div>
-      </li>
-      `
+      showItem(data.item)
     }
   }
 })
@@ -32,3 +25,14 @@ socket.addEventListener('close', (event) => {
   document.querySelector('.status')
     .innerText = 'Bye Bye, see you!'
 })
+
+function showItem(item) {
+  document.querySelector('.list')
+    .innerHTML += `
+  <li>
+    <div class="col-12">
+      <a href="${item.url}" target="_blank">${item.title}</a>
+    </div>
+  </li>
+  `
+}
