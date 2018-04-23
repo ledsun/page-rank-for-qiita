@@ -1,6 +1,6 @@
 {
   "name": "page-rank-for-qiita",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "bin": {
     "panq": "bin/panq",
     "panq-server": "bin/panq-server"
@@ -25,7 +25,8 @@
   "devDependencies": {},
   "files": [
     "bin/*",
-    "lib/**"
+    "lib/**",
+    "public/**"
   ],
   "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
