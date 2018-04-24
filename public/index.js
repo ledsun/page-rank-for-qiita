@@ -4,9 +4,7 @@ let numberOfItems = 0
 
 // Connection opened
 socket.addEventListener('open', (event) => {
-  const params = (new URL(document.location))
-    .searchParams
-  const tagName = params.get('tag')
+  const tagName = getTagName()
   numberOfItems = 0
 
   // nullを送るを文字列'null'を送ってしまう
@@ -15,7 +13,7 @@ socket.addEventListener('open', (event) => {
 
 // Listen for messages
 socket.addEventListener('message', (event) => {
-  console.log('Message from server ', event.data)
+  // console.log('Message from server ', event.data)
   const data = JSON.parse(event.data)
 
   if (data.tag !== undefined) {
@@ -24,6 +22,10 @@ socket.addEventListener('message', (event) => {
   }
 
   if (data.item) {
+    if(numberOfItems === 0) {
+      scrollToSearch()
+    }
+
     numberOfItems++;
     document.querySelector('.items')
       .innerText = numberOfItems
@@ -39,6 +41,20 @@ socket.addEventListener('close', (event) => {
   document.querySelector('.status')
     .innerText = 'Bye Bye, see you!'
 })
+
+function getTagName() {
+  const params = (new URL(document.location))
+    .searchParams
+  return params.get('tag')
+}
+
+function scrollToSearch() {
+  // クエリ文字列がない時はスクロールしない
+  if(getTagName()){
+    console.log(document.querySelector('form').getBoundingClientRect().top - document.body.getBoundingClientRect().top)
+    window.scroll(0, document.querySelector('form').getBoundingClientRect().top - document.body.getBoundingClientRect().top)
+  }
+}
 
 function showItem(item) {
   document.querySelector('.list')
