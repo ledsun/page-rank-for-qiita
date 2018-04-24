@@ -58,7 +58,9 @@
                 </span>
             </div>
           </form>
-
+          {{#each recentTags}}
+          <a href="/?tag={{encoded}}">{{tag}}</a>
+          {{/each}}
         </div>
       </div>
     </div>
