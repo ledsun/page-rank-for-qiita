@@ -9,7 +9,9 @@ const sendIndex = require('../lib/server/send-index')
 const startSearh = require('../lib/server/start-search')
 
 const PORT = process.env.PORT || 3000
-const file = new static.Server(`${__dirname}/../public`)
+const file = new static.Server(`${__dirname}/../public`, {
+  cache: 3600
+})
 const httpServer = http.createServer((req, res) => {
   const url = parser.parse(req.url, true);
   if (url.pathname === '/') {
