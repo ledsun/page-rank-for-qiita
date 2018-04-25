@@ -51,7 +51,6 @@ function getTagName() {
 function scrollToSearch() {
   // クエリ文字列がない時はスクロールしない
   if(getTagName()){
-    console.log(document.querySelector('form').getBoundingClientRect().top - document.body.getBoundingClientRect().top)
     window.scroll(0, document.querySelector('form').getBoundingClientRect().top - document.body.getBoundingClientRect().top)
   }
 }
