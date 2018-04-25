@@ -1,6 +1,7 @@
 const socket = new WebSocket(`ws://${location.hostname}:${location.port}`)
 
 let numberOfItems = 0
+let scrolled = false
 
 // Connection opened
 socket.addEventListener('open', (event) => {
@@ -22,8 +23,9 @@ socket.addEventListener('message', (event) => {
   }
 
   if (data.item) {
-    if (numberOfItems === 0) {
+    if (!scrolled) {
       scrollToSearch()
+      scrolled = true
     }
 
     numberOfItems++;
@@ -40,6 +42,11 @@ socket.addEventListener('message', (event) => {
 socket.addEventListener('close', (event) => {
   document.querySelector('.status')
     .innerText = 'Bye Bye, see you!'
+
+  if (!scrolled) {
+    scrollToSearch()
+    scrolled = true
+  }
 })
 
 function getTagName() {
