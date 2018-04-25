@@ -16,5 +16,7 @@ sleep 60s
 echo ./setup/provisioning.sh $PUBLIC_DNS
 ./setup/provisioning.sh $PUBLIC_DNS
 
+aws ec2 create-tags --profile panq --resources $INSTANCE_ID --tags Key=Name,Value=panq_rc
+
 echo If you want to delete the instance:
 echo aws ec2 terminate-instances --profile panq --instance-ids $INSTANCE_ID
