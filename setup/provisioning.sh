@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PEM=panq.pem
 HOST=$1
+PEM=$2
 
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   # Install Node.js.
@@ -25,6 +25,3 @@ ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   npm i page-rank-for-qiita
   sudo -E forever start -o out.log -e err.log \$(npm bin)/panq-server
 EOF
-
-echo If you want ssh login the instance:
-echo ssh -i $PEM ec2-user@$HOST
