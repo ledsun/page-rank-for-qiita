@@ -18,7 +18,7 @@ EOF
 scp -i $PEM .env ec2-user@$HOST:.
 
 # Send cache file
-scp -i $PEM $TMPDIR/page-rank-for-qiita__page-rank.json ec2-user@$HOST:/tmp
+scp -i $PEM $TMPDIR/page-rank-for-qiita__page-rank.tsv ec2-user@$HOST:/tmp
 
 # Setup the server
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
