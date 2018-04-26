@@ -8,7 +8,7 @@ const HasPageRankStream = require('../lib/has-page-rank-stream')
 const LimitStream = require('../lib/limit-stream')
 const journal = require('../lib/journal')
 
-const TAG = process.argv[2]
+const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const recentItemsStream = new RecentItemsStream(pageStream)
 const fetchPageRankStream = new FetchPageRankStream(journal.pageRanks)
