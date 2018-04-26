@@ -7,7 +7,7 @@ const WebSocketServer = require('websocket')
 const static = require('node-static')
 const sendIndex = require('../lib/server/send-index')
 const startSearh = require('../lib/server/start-search')
-const journal = require('../lib/server/journal')
+const journal = require('../lib/journal')
 
 const PORT = process.env.PORT || 3000
 const file = new static.Server(`${__dirname}/../public`, {
