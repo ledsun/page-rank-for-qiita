@@ -7,6 +7,7 @@ const WebSocketServer = require('websocket')
 const static = require('node-static')
 const sendIndex = require('../lib/server/send-index')
 const startSearh = require('../lib/server/start-search')
+const journal = require('../lib/server/journal')
 
 const PORT = process.env.PORT || 3000
 const file = new static.Server(`${__dirname}/../public`, {
@@ -15,7 +16,7 @@ const file = new static.Server(`${__dirname}/../public`, {
 const httpServer = http.createServer((req, res) => {
   const url = parser.parse(req.url, true);
   if (url.pathname === '/') {
-    sendIndex(req, res)
+    sendIndex(req, res, journal.queryHistories)
   } else {
     req.addListener('end', () => file.serve(req, res))
       .resume()
@@ -30,7 +31,7 @@ wsServer.on('request', (request) => {
   const connection = request.accept(null, request.origin)
   connection.on('message', (message) => {
     if (message.type === 'utf8') {
-      startSearh(message.utf8Data, connection)
+      startSearh(message.utf8Data, connection, journal)
     }
   })
 })
