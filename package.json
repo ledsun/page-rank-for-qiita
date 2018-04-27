@@ -1,6 +1,6 @@
 {
   "name": "page-rank-for-qiita",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "bin": {
     "panq": "bin/panq",
     "panq-server": "bin/panq-server"
