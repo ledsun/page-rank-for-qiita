@@ -28,3 +28,6 @@ ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   npm i page-rank-for-qiita
   sudo -E forever start -o out.log -e err.log \$(npm bin)/panq-server
 EOF
+
+# Send html cache
+scp -r -i $PEM public/cache/ ec2-user@$HOST:node_modules/page-rank-for-qiita/public/cache/
