@@ -88,7 +88,7 @@
       .innerHTML += template(item)
   }
 
-  function enablePreview(){
+  function enablePreview() {
     document.addEventListener('click', (e) => {
       const {
         target
@@ -126,6 +126,8 @@
         e.preventDefault()
         const preview = document.body.querySelector('.preview')
         preview.classList.remove('preview--show')
+        document.body.querySelector('.main')
+          .classList.remove('main-half')
       }
     })
   }
