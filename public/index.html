@@ -22,98 +22,84 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <style media="screen">
-    .fdb-block {
-      padding: 20px 0;
-    }
-
-    .results__tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .results__tag {
-      margin-left: 10px
-    }
-
-    .overlay iframe {
-      height: 100%;
-      position: fixed;
-      right: 0px;
-      top: 0px;
-      width: 40%;
-      z-index: 2;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <section class="fdb-block" data-block-type="contents" data-id="6">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2>Page rANk on Qiita</h2>
-        </div>
-
-        <div class="col-12 text-center">
-          <p>Qiitaからストック情報を探す検索エンジン</p>
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 text-center">
-          <form class="form" action="/" method="get">
-            <div class="input-group mt-4 mb-4">
-              <input type="text" class="form-control" name="tag" placeholder="タグ名">
-              <span class="input-group-btn">
-                  <button class="btn">検索開始</button>
-                </span>
-            </div>
-          </form>
-          <div class="col-12">
-            <h3>次のタグで検索</h3>
+  <div class="main">
+    <section class="fdb-block" data-block-type="contents" data-id="6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>Page rANk on Qiita</h2>
           </div>
-          {{#each recentTags}}<a href="/?tag={{encoded}}">{{tag}}</a> {{/each}}
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="fdb-block fp-active" data-block-type="features" data-id="10">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-12">
-          <h3><span class="items mr-1">0</span>件の記事から<span class="condition"></span>で検索<span class="status">中</span> </h3>
-        </div>
-      </div>
-      <div class="row text-left justify-content-center">
-      </div>
-
-      <div class="row text-left justify-content-center">
-        <ol class="list"></ol>
-      </div>
-    </div>
-  </section>
-  <section class="fdb-block" data-block-type="contents" data-id="6">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 text-center">
-          <h2>About</h2>
+          <div class="col-12 text-center">
+            <p>Qiitaからストック情報を探す検索エンジン</p>
+          </div>
         </div>
 
-        <div class="col-12 col-md-8 col-lg-6 text-center text-center">
-          <p>ストック情報とは？技術情報にはフロー情報とストック情報があります。フロー情報は最新の話題の情報です。ストック情報は古くても信頼できる情報です。 現在のQiitaの検索機能はフロー情報に特化しています。 ストック情報はどうすれば探せるでしょうか？ 学術論文の世界では「被引用数」を使って論文を評価する文化があります。</p>
-          <p>同様の発想で、Qiitaから被参照数が1以上の記事を探す検索エンジンを作りました。
-          </p>
-          <p><a href="https://medium.com/@ledsun/page-rank-on-qiita-69cc4c5338e9" target="_blank">Read more...</a></p>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6 text-center">
+            <form class="form" action="/" method="get">
+              <div class="input-group mt-4 mb-4">
+                <input type="text" class="form-control" name="tag" placeholder="タグ名">
+                <span class="input-group-btn">
+                    <button class="btn">検索開始</button>
+                  </span>
+              </div>
+            </form>
+            <div class="col-12">
+              <h3>次のタグで検索</h3>
+            </div>
+            {{#each recentTags}}<a href="/?tag={{encoded}}">{{tag}}</a> {{/each}}
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="fdb-block fp-active" data-block-type="features" data-id="10">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12">
+            <h3><span class="items mr-1">0</span>件の記事から<span class="condition"></span>で検索<span class="status">中</span> </h3>
+          </div>
+        </div>
+        <div class="row text-left justify-content-center">
+        </div>
+
+        <div class="row text-left justify-content-center">
+          <ol class="list"></ol>
+        </div>
+      </div>
+    </section>
+    <section class="fdb-block" data-block-type="contents" data-id="6">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <h2>About</h2>
+          </div>
+
+          <div class="col-12 col-md-8 col-lg-6 text-center text-center">
+            <p>ストック情報とは？技術情報にはフロー情報とストック情報があります。フロー情報は最新の話題の情報です。ストック情報は古くても信頼できる情報です。 現在のQiitaの検索機能はフロー情報に特化しています。 ストック情報はどうすれば探せるでしょうか？ 学術論文の世界では「被引用数」を使って論文を評価する文化があります。</p>
+            <p>同様の発想で、Qiitaから被参照数が1以上の記事を探す検索エンジンを作りました。
+            </p>
+            <p><a href="https://medium.com/@ledsun/page-rank-on-qiita-69cc4c5338e9" target="_blank">Read more...</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    enable experimental<input type="checkbox" class="experimental">
+  </div>
+  <div class="preview">
+    <iframe></iframe>
+    <div class="preview__open-in-qiita">
+      <a href="#">Qiita で開く</a>
     </div>
-  </section>
-  enable experimental<input type="checkbox" class="experimental">
-  <div class="overlay"></div>
+    <div class="preview__close">
+      <a href="#">閉じる</a>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

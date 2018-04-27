@@ -88,21 +88,48 @@
       .innerHTML += template(item)
   }
 
-  startSearch()
+  function enablePreview(){
+    document.addEventListener('click', (e) => {
+      const {
+        target
+      } = e
 
-  // お試し機能はデフォルト無効
-  document.querySelector('.experimental').addEventListener('change', () =>{
-    document.addEventListener('mouseover', ({
-      target
-    }) => {
+      // 記事リンクをクリックしたらプレビューを表示
       if (target.closest('.results__item-link')) {
-        const iframe = `<iframe src="cache${target.href.replace('https://qiita.com', '')}.html"></iframe>`
-        if (document.body.querySelector('.overlay')
-          .innerHTML !== iframe) {
-          document.body.querySelector('.overlay')
-            .innerHTML = iframe
+        e.preventDefault()
+        document.body.querySelector('.main')
+          .classList.add('main-half')
+        const preview = document.body.querySelector('.preview')
+        preview.classList.add('preview--show')
+        const url = target.href
+        if (preview.dataset.url !== url) {
+          preview.dataset.url = url
+          const cacheUrl = `cache${url.replace('https://qiita.com', '')}.html`
+          const iframe = preview.querySelector('iframe')
+          if (iframe.getAttribute('src') !== cacheUrl) {
+            iframe.setAttribute('src', cacheUrl)
+          }
         }
       }
+
+      // Qiitaで開くバーをクリック
+      if (target.closest('.preview__open-in-qiita')) {
+        e.preventDefault()
+        e.stopPropagation()
+        const preview = document.body.querySelector('.preview')
+        const url = preview.dataset.url
+        window.open(url, '_blank')
+      }
+
+      // プレビューを閉じる
+      if (target.closest('.preview__close')) {
+        e.preventDefault()
+        const preview = document.body.querySelector('.preview')
+        preview.classList.remove('preview--show')
+      }
     })
-  })
+  }
+
+  startSearch()
+  enablePreview()
 })()
