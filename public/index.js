@@ -18,8 +18,8 @@ socket.addEventListener('message', (event) => {
   const data = JSON.parse(event.data)
 
   if (data.tag !== undefined) {
-    document.querySelector('.results')
-      .innerText += ` ${data.tag ? data.tag : 'all'}`
+    document.querySelector('.condition')
+      .innerText = `${data.tag ? data.tag : 'すべて'}`
   }
 
   if (data.item) {
