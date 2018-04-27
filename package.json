@@ -38,6 +38,6 @@
     "url": "git+https://github.com/ledsun/page-rank-for-qiita.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "panq-server"
   }
 }

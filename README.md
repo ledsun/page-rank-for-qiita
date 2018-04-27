@@ -92,7 +92,7 @@ bashの組込みコマンド自作によるスクリプトの高速化	https://q
 ### Server
 
 ```
-env ACCESS_TOKEN=YOUR_ACCESS_TOKEN panq-server
+env ACCESS_TOKEN=YOUR_ACCESS_TOKEN npm start
 ```
 
 http://localhost:3000
