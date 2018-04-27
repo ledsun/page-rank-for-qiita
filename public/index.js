@@ -65,13 +65,21 @@ function scrollToSearch() {
   }
 }
 
+const source = `
+<li>
+<div class="col-12">
+  <a href="{{url}}" target="_blank">{{title}}</a>
+  <ul class="results__tag-list">
+  {{#each tags}}
+    <li><a href="/?tag={{this}}" class="badge badge-secondary mr-1">{{this}}</a></li>
+  {{/each}}
+  </ul>
+</div>
+</li>
+`
+const template = Handlebars.compile(source)
+
 function showItem(item) {
   document.querySelector('.list')
-    .innerHTML += `
-  <li>
-    <div class="col-12">
-      <a href="${item.url}" target="_blank">${item.title}</a>
-    </div>
-  </li>
-  `
+    .innerHTML += template(item)
 }
