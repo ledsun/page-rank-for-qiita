@@ -65,13 +65,14 @@ function scrollToSearch() {
   }
 }
 
+Handlebars.registerHelper('uc', (str) => encodeURIComponent(str))
 const source = `
 <li>
 <div class="col-12">
   <a href="{{url}}" target="_blank">{{title}}</a>
   <ul class="results__tag-list">
   {{#each tags}}
-    <li><a href="/?tag={{this}}" class="badge badge-secondary mr-1">{{this}}</a></li>
+    <li><a href="/?tag={{uc this}}" class="badge badge-secondary mr-1">{{this}}</a></li>
   {{/each}}
   </ul>
 </div>
