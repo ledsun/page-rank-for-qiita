@@ -29,22 +29,21 @@
     flex-direction: column;
   }
   .main-half {
-    height: 50%;
+    height: 45%;
     overflow: scroll;
   }
   .preview {
-    height: 50%;
+    height: 55%;
   }
   .preview__open-in-qiita {
-    height: 46px;
-    line-height: 46px;
-    margin: 0 1px;
-    top: 50%;
-    width: calc(100% - 2px);
+    height: 44px;
+    line-height: 44px;
+    top: 45%;
+    width: 100%;
   }
   .preview__close {
-    height: 29px;
-    line-height: 29px;
+    height: 36px;
+    line-height: 36px;
     width: 100%;
   }
 }
