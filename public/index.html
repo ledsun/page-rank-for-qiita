@@ -52,13 +52,9 @@
           <p>Qiitaからストック情報を探す検索エンジン</p>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="fdb-block" data-block-type="forms" data-id="9">
-    <div class="container">
+
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6 text-center">
-          <h1>Search</h1>
           <form class="form" action="/" method="get">
             <div class="input-group mt-4 mb-4">
               <input type="text" class="form-control" name="tag" placeholder="タグ名">
@@ -67,20 +63,23 @@
                 </span>
             </div>
           </form>
+          <div class="col-12">
+            <h3>次のタグで検索</h3>
+          </div>
           {{#each recentTags}}<a href="/?tag={{encoded}}">{{tag}}</a> {{/each}}
         </div>
       </div>
     </div>
   </section>
+
   <section class="fdb-block fp-active" data-block-type="features" data-id="10">
     <div class="container">
       <div class="row text-center">
         <div class="col-12">
-          <h1 class="results">Results of </h1>
+          <h3><span class="items ml-1 mr-1"></span>件の記事から検索</h3>
         </div>
       </div>
       <div class="row text-left justify-content-center">
-        <span class="status  mr-1">Let's search!</span>from <span class="items ml-1 mr-1"></span>items.
       </div>
 
       <div class="row text-left justify-content-center">
@@ -90,12 +89,12 @@
   </section>
   <section class="fdb-block" data-block-type="contents" data-id="6">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12 text-center">
           <h2>About</h2>
         </div>
 
-        <div class="col-12 text-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center text-center">
           <p>ストック情報とは？技術情報にはフロー情報とストック情報があります。フロー情報は最新の話題の情報です。ストック情報は古くても信頼できる情報です。 現在のQiitaの検索機能はフロー情報に特化しています。 ストック情報はどうすれば探せるでしょうか？ 学術論文の世界では「被引用数」を使って論文を評価する文化があります。</p>
           <p>同様の発想で、Qiitaから被参照数が1以上の記事を探す検索エンジンを作りました。
           </p>
