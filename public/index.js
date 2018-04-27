@@ -72,7 +72,7 @@
   const source = `
   <li>
   <div class="col-12">
-    <a href="{{url}}" target="_blank">{{title}}</a>
+    <a href="{{url}}" class="results__item-link" target="_blank">{{title}}</a>
     <ul class="results__tag-list">
     {{#each tags}}
       <li><a href="/?tag={{uc this}}" class="badge badge-secondary mr-1">{{this}}</a></li>
@@ -89,4 +89,20 @@
   }
 
   startSearch()
+
+  // お試し機能はデフォルト無効
+  document.querySelector('.experimental').addEventListener('change', () =>{
+    document.addEventListener('mouseover', ({
+      target
+    }) => {
+      if (target.closest('.results__item-link')) {
+        const iframe = `<iframe src="cache${target.href.replace('https://qiita.com', '')}.html"></iframe>`
+        if (document.body.querySelector('.overlay')
+          .innerHTML !== iframe) {
+          document.body.querySelector('.overlay')
+            .innerHTML = iframe
+        }
+      }
+    })
+  })
 })()
