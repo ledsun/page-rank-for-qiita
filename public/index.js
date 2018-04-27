@@ -40,6 +40,9 @@ socket.addEventListener('message', (event) => {
 
 // Connection closed
 socket.addEventListener('close', (event) => {
+  document.querySelector('.status')
+    .innerText = '完了'
+
   if (!scrolled) {
     scrollToSearch()
     scrolled = true
