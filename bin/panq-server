@@ -11,6 +11,7 @@ const serveStatic = require('serve-static')
 const sendIndex = require('../lib/server/send-index')
 const startSearh = require('../lib/server/start-search')
 const journal = require('../lib/journal')
+const dummySocket = require('../lib/server/dummy-socket')
 
 const PORT = process.env.PORT || 3000
 const app = connect()
@@ -41,3 +42,18 @@ wsServer.on('request', (request) => {
   })
 })
 httpServer.listen(PORT, () => console.log(`Server running at port:${PORT}`))
+
+// 自動検索
+setTimeout(() => {
+  const already = new Set()
+  dummySocket.done((tags) => {
+    const next = tags.filter((t) => !already.has(t))
+    if (next.length) {
+      already.add(next[0])
+      setTimeout(() => {
+        startSearh(next[0], dummySocket, journal)
+      }, 100)
+    }
+  })
+  startSearh('', dummySocket, journal)
+}, 100)
