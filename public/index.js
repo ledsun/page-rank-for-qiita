@@ -89,6 +89,36 @@
   }
 
   function enablePreview() {
+    class Preview {
+      constructor(body) {
+        this._main = body.querySelector('.main')
+        this._preview = body.querySelector('.preview')
+      }
+      show() {
+        this._main.classList.add('main-half')
+        this._preview.classList.add('preview--show')
+      }
+      hide() {
+        this._preview.classList.remove('preview--show')
+        this._main.classList.remove('main-half')
+      }
+      setUrl(url) {
+        if (this._preview.dataset.url !== url) {
+          this._preview.dataset.url = url
+          const cacheUrl = `cache${url.replace('https://qiita.com', '')}.html`
+          const iframe = this._preview.querySelector('iframe')
+          if (iframe.getAttribute('src') !== cacheUrl) {
+            iframe.setAttribute('src', cacheUrl)
+          }
+        }
+      }
+      get url() {
+        return this._preview.dataset.url
+      }
+    }
+
+    const preview = new Preview(document.body)
+
     document.addEventListener('click', (e) => {
       const {
         target
@@ -97,38 +127,23 @@
       // 記事リンクをクリックしたらプレビューを表示
       if (target.closest('.results__item-link')) {
         e.preventDefault()
-        document.body.querySelector('.main')
-          .classList.add('main-half')
-        const preview = document.body.querySelector('.preview')
-        preview.classList.add('preview--show')
-        const url = target.href
-        if (preview.dataset.url !== url) {
-          preview.dataset.url = url
-          const cacheUrl = `cache${url.replace('https://qiita.com', '')}.html`
-          const iframe = preview.querySelector('iframe')
-          if (iframe.getAttribute('src') !== cacheUrl) {
-            iframe.setAttribute('src', cacheUrl)
-          }
-        }
+
+        preview.show()
+        preview.setUrl(target.href)
       }
 
       // Qiitaで開くバーをクリック
       if (target.closest('.preview__open-in-qiita')) {
         e.preventDefault()
         e.stopPropagation()
-        const preview = document.body.querySelector('.preview')
-        const url = preview.dataset.url
-        window.open(url, '_blank')
+        window.open(preview.url, '_blank')
       }
 
       // プレビューを閉じる
       if (target.closest('.preview__close')) {
         e.preventDefault()
         e.stopPropagation()
-        const preview = document.body.querySelector('.preview')
-        preview.classList.remove('preview--show')
-        document.body.querySelector('.main')
-          .classList.remove('main-half')
+        preview.hide()
       }
     })
   }
