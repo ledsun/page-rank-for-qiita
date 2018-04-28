@@ -95,12 +95,16 @@
         this._preview = body.querySelector('.preview')
       }
       show() {
-        this._main.classList.add('main-half')
-        this._preview.classList.add('preview--show')
+        if (!this._preview.classList.contains('preview--show')) {
+          this._main.classList.add('main-half')
+          this._preview.classList.add('preview--show')
+        }
       }
       hide() {
-        this._preview.classList.remove('preview--show')
-        this._main.classList.remove('main-half')
+        if (this._preview.classList.contains('preview--show')) {
+          this._preview.classList.remove('preview--show')
+          this._main.classList.remove('main-half')
+        }
       }
       setUrl(url) {
         if (this._preview.dataset.url !== url) {
