@@ -124,6 +124,7 @@
       // プレビューを閉じる
       if (target.closest('.preview__close')) {
         e.preventDefault()
+        e.stopPropagation()
         const preview = document.body.querySelector('.preview')
         preview.classList.remove('preview--show')
         document.body.querySelector('.main')
