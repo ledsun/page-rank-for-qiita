@@ -30,4 +30,4 @@ ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
 EOF
 
 # Send html cache
-scp -r -i $PEM public/cache/ ec2-user@$HOST:node_modules/page-rank-for-qiita/public/cache/
+scp -rC -i $PEM public/cache/ ec2-user@$HOST:node_modules/page-rank-for-qiita/public/cache/
