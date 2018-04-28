@@ -20,7 +20,7 @@
       const data = JSON.parse(event.data)
 
       if (data.tag !== undefined) {
-        document.querySelector('.condition')
+        document.querySelector('.search-condition')
           .innerText = `${data.tag ? data.tag : 'すべて'}`
       }
 
@@ -84,7 +84,7 @@
   const template = Handlebars.compile(source)
 
   function showItem(item) {
-    document.querySelector('.list')
+    document.querySelector('.resut-list')
       .innerHTML += template(item)
   }
 
