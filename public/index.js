@@ -96,14 +96,27 @@
       }
       show() {
         if (!this._preview.classList.contains('preview--show')) {
+          // mainに高さがないのでbodyの位置を使います。
+          const scroll = document.body.getBoundingClientRect()
+            .top
+
           this._main.classList.add('main-half')
           this._preview.classList.add('preview--show')
+
+          this._main.scrollTop = -scroll
         }
       }
       hide() {
         if (this._preview.classList.contains('preview--show')) {
+          // mainの中の最初の要素の位置を使います。
+          const scroll = document.querySelector('.main')
+            .children[0].getBoundingClientRect()
+            .top
+
           this._preview.classList.remove('preview--show')
           this._main.classList.remove('main-half')
+
+          document.body.scrollTop = -scroll
         }
       }
       setUrl(url) {
