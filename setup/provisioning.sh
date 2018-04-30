@@ -17,9 +17,6 @@ EOF
 # Send secrets
 scp -i $PEM .env ec2-user@$HOST:.
 
-# Send cache file
-scp -i $PEM $TMPDIR/page-rank-for-qiita__page-rank.tsv ec2-user@$HOST:/tmp
-
 # Setup the server
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   source .env
@@ -28,6 +25,3 @@ ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   npm i page-rank-for-qiita
   sudo -E forever start -o out.log -e err.log \$(npm bin)/panq-server
 EOF
-
-# Send html cache
-scp -rC -i $PEM public/cache/ ec2-user@$HOST:node_modules/page-rank-for-qiita/public/cache/
