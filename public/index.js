@@ -17,7 +17,7 @@
 
     // Listen for messages
     socket.addEventListener('message', (event) => {
-      // console.log('Message from server ', event.data)
+      // console.log(new Date(), 'Message from server ', event.data)
       const data = JSON.parse(event.data)
 
       if (data.tag !== undefined) {
