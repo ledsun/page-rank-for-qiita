@@ -46,14 +46,26 @@ httpServer.listen(PORT, () => console.log(new Date(), `Server running at port:${
 // 自動検索
 setTimeout(() => {
   const already = new Set()
+
+  // 前回の検索でみつかたタグを対象にする
   dummySocket.done((tags) => {
+    // 一定数以上見つかったら停止
+    if (already.size > 100) {
+      console.log(new Date(), 'Finish auto search.')
+      return
+    }
+
+    // すでに検索済みのタグはスキップ
     const next = tags.filter((t) => !already.has(t))
     if (next.length) {
       already.add(next[0])
-      setTimeout(() => {
-        startSearh(next[0], dummySocket, journal)
-      }, 100)
+      setTimeout(() => startSearh(next[0], dummySocket, journal), 100)
+    } else {
+      console.log(new Date(), 'Finish auto search. There is no more tag.')
     }
   })
+
+  // 最初にタグなしで検索
+  already.add('')
   startSearh('', dummySocket, journal)
 }, 100)
