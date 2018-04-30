@@ -27,7 +27,7 @@
 
       if (data.item) {
         if (!scrolled) {
-          scrollToSearch()
+          scrollToSearchResult()
           scrolled = true
         }
 
@@ -50,7 +50,7 @@
         .innerText = '完了'
 
       if (!scrolled) {
-        scrollToSearch()
+        scrollToSearchResult()
         scrolled = true
       }
     })
@@ -62,10 +62,10 @@
     return params.get('tag')
   }
 
-  function scrollToSearch() {
+  function scrollToSearchResult() {
     // クエリ文字列がない時はスクロールしない
     if (getTagName()) {
-      window.scroll(0, document.querySelector('form')
+      window.scroll(0, document.querySelector('.items')
         .getBoundingClientRect()
         .top - document.body.getBoundingClientRect()
         .top)
