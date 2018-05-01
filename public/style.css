@@ -23,11 +23,11 @@
     flex-direction: column;
   }
   .main-half {
-    height: 45%;
+    height: 35%;
     overflow: scroll;
   }
   .preview {
-    height: 60%;
+    height: 65%;
   }
   .preview__close {
     height: 36px;
