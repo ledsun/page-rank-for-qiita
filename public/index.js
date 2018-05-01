@@ -72,24 +72,29 @@
     }
   }
 
-  Handlebars.registerHelper('uc', (str) => encodeURIComponent(str))
-  const source = `
-  <li>
-  <div class="col-12">
-    <a href="{{url}}" class="results__item-link" target="_blank">{{title}}</a>
-    <ul class="results__tag-list">
-    {{#each tags}}
-      <li><a href="/?tag={{uc this}}" class="badge badge-secondary mr-1">{{this}}</a></li>
-    {{/each}}
-    </ul>
-  </div>
-  </li>
-  `
-  const template = Handlebars.compile(source)
+  const app = new Vue({
+    el: '#app',
+    data: {
+      resultList: []
+    },
+    methods: {
+      addResults(item) {
+        item.tags = item.tags.map((t) => ({
+          text: t,
+          encoded: encodeURIComponent(t)
+        }))
+        this.resultList.push(item)
+        this.resultList.sort((a, b) => {
+          return (a.count < b.count) ? 1 :
+            (a.count > b.count) ? -1 :
+            0
+        })
+      }
+    }
+  })
 
   function showItem(item) {
-    document.querySelector('.resut-list')
-      .innerHTML += template(item)
+    app.addResults(item)
   }
 
   function enablePreview() {

@@ -14,7 +14,7 @@
     gtag('config', '{{googleAnalitycsTrackingID}}');
   </script>
   {{/if}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <title>panq</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +35,7 @@
           </div>
 
           <div class="col-12 text-center">
-            <p>Qiitaからストック情報を探す検索エンジン</p>
+            <p>Qiitaからストック情報を探す検索エンジン\{{}}</p>
           </div>
         </div>
 
@@ -65,8 +65,17 @@
             <h3><span class="search-condition"></span>で<span class="number-of-results">0</span>件（<span class="items mr-1">0</span>件中）を検索<span class="status">中</span> </h3>
           </div>
         </div>
-        <div class="row text-left justify-content-center">
-          <ol class="resut-list"></ol>
+        <div id="app" class="row text-left justify-content-center">
+          <ol class="resut-list">
+            <li v-for="result in resultList" :key="result.url">
+              <div class="col-12">
+                <a :href="result.url" class="results__item-link" target="_blank">\{{result.title}} \{{result.count}}</a>
+                <ul class="results__tag-list">
+                  <li v-for="tag in result.tags"><a :href="'/?tag=' + tag.encoded" class="badge badge-secondary mr-1">\{{tag.text}}</a></li>
+                </ul>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
