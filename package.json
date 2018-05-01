@@ -29,7 +29,7 @@
   "files": [
     "bin/*",
     "lib/**",
-    "public/**"
+    "public/index.*"
   ],
   "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
