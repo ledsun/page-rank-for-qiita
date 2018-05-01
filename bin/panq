@@ -12,7 +12,7 @@ const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const recentItemsStream = new RecentItemsStream(pageStream)
 const fetchPageRankStream = new FetchPageRankStream(journal.pageRanks)
-const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream)
+const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream, 30)
 
 const pageRankStream = pageStream
   .pipe(recentItemsStream)
