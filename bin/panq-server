@@ -50,7 +50,7 @@ setTimeout(() => {
   // 前回の検索でみつかたタグを対象にする
   dummySocket.done((tags) => {
     // 一定数以上見つかったら停止
-    if (already.size > 100) {
+    if (already.size > 300) {
       console.log(new Date(), 'Finish auto search.')
       return
     }
