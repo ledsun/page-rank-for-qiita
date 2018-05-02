@@ -75,7 +75,26 @@
   const app = new Vue({
     el: '#app',
     data: {
-      resultList: []
+      results: new Map(),
+      resultsChaged: 1
+    },
+    computed: {
+      resultList() {
+        // https://stackoverflow.com/questions/37130105/does-vue-support-reactivity-on-map-and-set-data-typess
+        if (this.resultsChaged) {
+          const items = Array.from(this.results.values())
+          return items.sort((a, b) => {
+            return (a.count < b.count) ? 1 :
+              (a.count > b.count) ? -1 :
+              0
+          })
+        }
+      }
+    },
+    watch: {
+      results(val) {
+        alert("yes, computed property changed")
+      }
     },
     methods: {
       addResults(item) {
@@ -83,12 +102,8 @@
           text: t,
           encoded: encodeURIComponent(t)
         }))
-        this.resultList.push(item)
-        this.resultList.sort((a, b) => {
-          return (a.count < b.count) ? 1 :
-            (a.count > b.count) ? -1 :
-            0
-        })
+        this.results.set(item.url, item)
+        this.resultsChaged += 1
       }
     }
   })
