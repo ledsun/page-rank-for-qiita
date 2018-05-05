@@ -86,6 +86,8 @@
           return items.sort((a, b) => {
             return (a.count < b.count) ? 1 :
               (a.count > b.count) ? -1 :
+              (a.updated_at < b.updated_at) ? 1 :
+              (a.updated_at > b.updated_at) ? -1 :
               0
           })
         }
