@@ -59,13 +59,13 @@
     </section>
 
     <section class="fdb-block fp-active" data-block-type="features" data-id="10">
-      <div class="container">
+      <div id="app" class="container">
         <div class="row text-center">
           <div class="col-12">
-            <h3><span class="search-condition"></span>で<span class="number-of-results">0</span>件（<span class="items mr-1">0</span>件中）を検索<span class="status">中</span> </h3>
+            <h3><span class="search-condition"></span>で<span class="number-of-results">\{{results.size}}</span>件（<span class="items mr-1">0</span>件中）を検索<span class="status">中</span> </h3>
           </div>
         </div>
-        <div id="app" class="row text-left justify-content-center">
+        <div class="row text-left justify-content-center">
           <ol class="resut-list">
             <li v-for="result in resultList" :key="result.url">
               <div class="col-12">

@@ -3,7 +3,6 @@
     const socket = new WebSocket(`ws://${location.hostname}:${location.port}`)
 
     let numberOfItems = 0
-    let numberOfResults = 0
     let scrolled = false
 
     // Connection opened
@@ -36,9 +35,6 @@
           .innerText = numberOfItems
 
         if (data.item.count > 0) {
-          numberOfResults++;
-          document.querySelector('.number-of-results')
-            .innerText = numberOfResults
           showItem(data.item)
         }
       }
