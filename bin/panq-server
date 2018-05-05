@@ -20,7 +20,7 @@ app
   .use('/', (req, res, next) => {
     const url = parser.parse(req.url, true)
     if (url.pathname === '/' || url.pathname === '/index.html') {
-      sendIndex(req, res, journal.queryHistories)
+      sendIndex(req, res, journal)
     } else {
       next()
     }
