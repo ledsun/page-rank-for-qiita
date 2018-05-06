@@ -80,7 +80,8 @@
           <ol class="resut-list">
             <li v-for="result in resultList" :key="result.url">
               <div class="col-12">
-                <a :href="result.url" class="results__item-link" target="_blank">\{{result.title}} \{{result.count}}</a>
+                <a :href="result.url" class="results__item-link" target="_blank">\{{result.title}}</a>
+                \{{result.count}}
                 <ul class="results__tag-list">
                   <li v-for="tag in result.tags"><a :href="'/?tag=' + tag.encoded" class="badge badge-secondary mr-1">\{{tag.text}}</a></li>
                 </ul>
