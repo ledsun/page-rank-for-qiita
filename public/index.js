@@ -80,12 +80,14 @@
         if (this.resultsChaged) {
           const items = Array.from(this.results.values())
           return items.sort((a, b) => {
-            return (a.count < b.count) ? 1 :
-              (a.count > b.count) ? -1 :
-              (a.updated_at < b.updated_at) ? 1 :
-              (a.updated_at > b.updated_at) ? -1 :
-              0
-          })
+              // カウント、更新日降順
+              return (a.count < b.count) ? 1 :
+                (a.count > b.count) ? -1 :
+                (a.updated_at < b.updated_at) ? 1 :
+                (a.updated_at > b.updated_at) ? -1 :
+                0
+            })
+            .slice(0, 500) // 5000件見つかることがある。描画速度が維持できない
         }
       }
     },
