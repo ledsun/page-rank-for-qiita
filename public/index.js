@@ -81,8 +81,8 @@
           const items = Array.from(this.results.values())
           return items.sort((a, b) => {
               // カウント、更新日降順
-              return (a.count < b.count) ? 1 :
-                (a.count > b.count) ? -1 :
+              return (a.ratio < b.ratio) ? 1 :
+                (a.ratio > b.ratio) ? -1 :
                 (a.updated_at < b.updated_at) ? 1 :
                 (a.updated_at > b.updated_at) ? -1 :
                 0
@@ -102,6 +102,8 @@
           text: t,
           encoded: encodeURIComponent(t)
         }))
+        item.ratio = (item.count / item.content_length * 100000)
+          .toFixed(2)
         this.results.set(item.url, item)
         this.resultsChaged += 1
       }
