@@ -79,6 +79,7 @@
             <li v-for="result in resultList" :key="result.url">
               <div class="col-12">
                 <a :href="result.url" class="results__item-link" target="_blank">\{{result.title}}</a>
+                \{{result.updated_at.split('T')[0]}}
                 <span class="badge badge-pill badge-light">\{{result.ratio}}</span>
                 <ul class="results__tag-list">
                   <li v-for="tag in result.tags"><a :href="'/?tag=' + tag.encoded" class="badge badge-secondary mr-1">\{{tag.text}}</a></li>
