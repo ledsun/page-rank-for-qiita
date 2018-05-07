@@ -202,15 +202,8 @@
   // キャッシュの情報を表示する
   function initView() {
     if (window.pageRanks) {
-      const tagName = getTagName()
       for (const pageRank of pageRanks()) {
-        if (tagName) {
-          if (pageRank.tags.includes(tagName)) {
-            app.addResults(pageRank)
-          }
-        } else {
-          app.addResults(pageRank)
-        }
+        app.addResults(pageRank)
       }
     }
   }
