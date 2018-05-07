@@ -112,10 +112,6 @@
           encoded: encodeURIComponent(t)
         }))
 
-        // calculate page rank
-        item.ratio = (item.count / item.content_length * 100000)
-          .toFixed(2)
-
         this.results.set(item.url, item)
         this.resultsChaged += 1
       }
