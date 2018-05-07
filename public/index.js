@@ -98,12 +98,24 @@
     },
     methods: {
       addResults(item) {
+        // Decode html string
+        // https://stackoverflow.com/questions/3700326/decode-amp-back-to-in-javascript
+        const dom = new DOMParser()
+          .parseFromString(
+            `<!doctype html><body>${item.title}`,
+            'text/html')
+        item.title = dom.body.textContent
+
+        // Encode tags for link
         item.tags = item.tags.map((t) => ({
           text: t,
           encoded: encodeURIComponent(t)
         }))
+
+        // calculate page rank
         item.ratio = (item.count / item.content_length * 100000)
           .toFixed(2)
+
         this.results.set(item.url, item)
         this.resultsChaged += 1
       }
