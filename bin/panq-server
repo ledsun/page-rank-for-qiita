@@ -25,9 +25,10 @@ app
       next()
     }
   })
-  .use(serveStatic(`${__dirname}/../public`), {
-    immutable: true
-  })
+  .use(serveStatic(`${__dirname}/../public`, {
+    immutable: true,
+    maxAge: '1h'
+  }))
 const httpServer = http.createServer(app)
 const wsServer = new WebSocketServer({
   httpServer
