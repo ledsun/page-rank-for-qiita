@@ -1,0 +1,21 @@
+/* 横向きの場合のスタイル */
+
+.main-half {
+  height: 100%;
+  overflow: scroll;
+  width: 50%;
+}
+
+.preview {
+  height: 100%;
+  overflow: scroll;
+  width: 50%;
+}
+
+.preview__close {
+  border-radius: 60px 60px 0 0;
+  height: 57px;
+  left: calc(75% - 60px);
+  line-height: 57px;
+  width: 120px;
+}

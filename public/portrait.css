@@ -1,0 +1,22 @@
+/* 縦向きの場合のスタイル */
+
+body {
+  flex-direction: column;
+}
+
+.main-half {
+  height: 35%;
+  overflow: scroll;
+}
+
+.preview {
+  height: 65%;
+}
+
+.preview__close {
+  border-radius: 36px 36px 0 0;
+  height: 36px;
+  left: calc(50% - 36px);
+  line-height: 48px;
+  width: 72px;
+}
