@@ -199,8 +199,8 @@
 
   // キャッシュの情報を表示する
   function initView() {
-    if (window.pageRanks) {
-      for (const pageRank of pageRanks()) {
+    if (window.knownItems) {
+      for (const pageRank of knownItems()) {
         app.addResults(pageRank)
       }
     }
