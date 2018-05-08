@@ -11,9 +11,11 @@
     width: 50%;
   }
   .preview__close {
+    border-radius: 60px 60px 0 0;
     height: 57px;
+    left: calc(75% - 60px);
     line-height: 57px;
-    width: 50%;
+    width: 120px;
   }
 }
 
@@ -30,9 +32,11 @@
     height: 65%;
   }
   .preview__close {
+    border-radius: 36px 36px 0 0;
     height: 36px;
-    line-height: 36px;
-    width: 100%;
+    left: calc(50% - 36px);
+    line-height: 48px;
+    width: 72px;
   }
 }
 
