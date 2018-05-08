@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="panq-session-id" content="{{sessionId}}">
+  <meta name="known-urls" content="{{knownUrls}}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/1.0.2/css/froala_blocks.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
@@ -80,7 +81,7 @@
       <div id="app" class="container">
         <div class="row text-center">
           <div class="col-12">
-            <h3><span class="search-condition">{{tag}}</span>で<span class="number-of-results">\{{results.size}}</span>件（<span class="items mr-1">0</span>件中）を検索<span class="status">中</span> </h3>
+            <h3><span class="search-condition">{{tag}}</span>で<span class="number-of-results">\{{results.size}}</span>件（<span class="items mr-1">{{knownUrls}}</span>件中）を検索<span class="status">中</span> </h3>
           </div>
         </div>
         <div class="row text-left justify-content-center">

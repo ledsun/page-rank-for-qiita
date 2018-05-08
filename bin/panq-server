@@ -22,9 +22,10 @@ app
   .use('/', (req, res, next) => {
     const url = parser.parse(req.url, true)
     if (url.pathname === '/' || url.pathname === '/index.html') {
-      const tag = url.query.tag
-      const sessionId = sendIndex(req, res, journal, tag)
-      sessionStore[sessionId] = tag || ''
+      const tag = (url.query.tag || '')
+        .toLowerCase()
+      const [sessionId, knownUrls] = sendIndex(req, res, journal, tag)
+      sessionStore[sessionId] = [tag || '', knownUrls]
     } else {
       next()
     }
@@ -42,7 +43,8 @@ wsServer.on('request', (request) => {
   const connection = request.accept(null, request.origin)
   connection.on('message', (message) => {
     if (message.type === 'utf8') {
-      startSearh(sessionStore[message.utf8Data], connection, journal, 300)
+      const [tag, knownUrls] = sessionStore[message.utf8Data]
+      startSearh(connection, tag, knownUrls, journal, 300)
     }
   })
 })
@@ -64,7 +66,7 @@ setTimeout(() => {
     const next = tags.filter((t) => !already.has(t))
     if (next.length) {
       already.add(next[0])
-      setTimeout(() => startSearh(next[0], dummySocket, journal, 30), 100)
+      setTimeout(() => startSearh(dummySocket, next[0], new Set(), journal, 30), 100)
     } else {
       console.log(new Date(), 'Finish auto search. There is no more tag.')
     }
@@ -72,5 +74,5 @@ setTimeout(() => {
 
   // 最初にタグなしで検索
   already.add('')
-  startSearh('', dummySocket, journal)
+  startSearh(dummySocket, '', new Set(), journal)
 }, 100)

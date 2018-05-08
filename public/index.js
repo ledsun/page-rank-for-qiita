@@ -9,7 +9,7 @@
     socket.addEventListener('open', (event) => {
       const tagName = getTagName()
       const sessionId = document.head.querySelector('[name="panq-session-id"]').content
-      numberOfItems = 0
+      numberOfItems = document.head.querySelector('[name="known-urls"]').content
 
       // nullを送るを文字列'null'を送ってしまう
       socket.send(sessionId)
