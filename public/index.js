@@ -19,11 +19,6 @@
       // console.log(new Date(), 'Message from server ', event.data)
       const data = JSON.parse(event.data)
 
-      if (data.tag !== undefined) {
-        document.querySelector('.search-condition')
-          .innerText = `${data.tag ? data.tag : 'すべて'}`
-      }
-
       if (data.item) {
         if (!scrolled) {
           scrollToSearchResult()
