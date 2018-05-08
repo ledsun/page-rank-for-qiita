@@ -33,7 +33,7 @@
     {{#if pageRanks}}
     function pageRanks() {
       return [{{#each pageRanks}}
-        { url: "{{url}}", title: "{{title}}", count: {{count}}, content_length: {{content_length}}, ratio: {{ratio}}, tags: [{{#each tags}}"{{this}}",{{/each}}], updated_at: "{{updated_at}}" },
+        { url: "{{url}}", title: "{{title}}", ratio: {{ratio}}, tags: [{{#each tags}}"{{this}}",{{/each}}], updated_at: "{{updated_at}}" },
       {{/each}}]
     }
     {{/if}}
