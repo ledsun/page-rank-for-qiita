@@ -29,7 +29,8 @@
   "files": [
     "bin/*",
     "lib/**",
-    "public/index.*"
+    "public/index.*",
+    "public/*.css"
   ],
   "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
