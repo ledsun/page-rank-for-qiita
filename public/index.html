@@ -85,7 +85,7 @@
           <ol class="resut-list">
             <li v-for="result in resultList" :key="result.url">
               <div class="col-12">
-                <a :href="result.url" class="results__item-link" target="_blank">\{{result.title}}</a>
+                <a :href="result.url" class="results__item-link" target="_blank" rel="noopener">\{{result.title}}</a>
                 \{{result.updated_at.split('T')[0]}}
                 <span class="badge badge-pill badge-light">\{{result.ratio}}</span>
                 <ul class="results__tag-list">
@@ -108,7 +108,7 @@
             <p>ストック情報とは？技術情報にはフロー情報とストック情報があります。フロー情報は最新の話題の情報です。ストック情報は古くても信頼できる情報です。 現在のQiitaの検索機能はフロー情報に特化しています。 ストック情報はどうすれば探せるでしょうか？ 学術論文の世界では「被引用数」を使って論文を評価する文化があります。</p>
             <p>同様の発想で、Qiitaから被参照数が1以上の記事を探す検索エンジンを作りました。
             </p>
-            <p><a href="https://medium.com/@ledsun/page-rank-on-qiita-69cc4c5338e9" target="_blank">Read more...</a></p>
+            <p><a href="https://medium.com/@ledsun/page-rank-on-qiita-69cc4c5338e9" target="_blank" rel="noopener">Read more...</a></p>
           </div>
         </div>
       </div>
