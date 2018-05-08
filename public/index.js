@@ -8,10 +8,11 @@
     // Connection opened
     socket.addEventListener('open', (event) => {
       const tagName = getTagName()
+      const sessionId = window.sessionId()
       numberOfItems = 0
 
       // nullを送るを文字列'null'を送ってしまう
-      socket.send(tagName ? tagName : '')
+      socket.send(sessionId)
     })
 
     // Listen for messages

@@ -33,8 +33,13 @@
     {{#if pageRanks}}
     function pageRanks() {
       return [{{#each pageRanks}}
-        { url: "{{url}}", title: "{{title}}", ratio: {{ratio}}, tags: [{{#each tags}}"{{this}}",{{/each}}], updated_at: "{{updated_at}}" },
+        { url: '{{url}}', title: '{{title}}', ratio: {{ratio}}, tags: [{{#each tags}}'{{this}}',{{/each}}], updated_at: '{{updated_at}}' },
       {{/each}}]
+    }
+    {{/if}}
+    {{#if sessionId}}
+    function sessionId() {
+      return '{{sessionId}}'
     }
     {{/if}}
   </script>
