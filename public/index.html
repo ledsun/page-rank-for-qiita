@@ -1,6 +1,17 @@
 <html>
 
 <head>
+  <title>panq</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/1.0.2/css/froala_blocks.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="portrait.css" media="screen and (orientation: portrait)">
+  <link rel="stylesheet" href="landscape.css" media="screen and (orientation: landscape)">
+
   {{#if googleAnalitycsTrackingID}}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{googleAnalitycsTrackingID}}"></script>
   <script>
@@ -14,16 +25,11 @@
     gtag('config', '{{googleAnalitycsTrackingID}}');
   </script>
   {{/if}}
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <title>panq</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/1.0.2/css/froala_blocks.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="index.css">
-  <script type="text/javascript">
+  <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script defer type="text/javascript">
     {{#if pageRanks}}
     function pageRanks() {
       return [{{#each pageRanks}}
@@ -32,8 +38,7 @@
     }
     {{/if}}
   </script>
-  <link rel="stylesheet" href="portrait.css" media="screen and (orientation: portrait)">
-  <link rel="stylesheet" href="landscape.css" media="screen and (orientation: landscape)">
+  <script defer src="./index.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -118,11 +123,6 @@
       <a href="#">閉じる</a>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <script src="./index.js" charset="utf-8"></script>
 </body>
 
 </html>
