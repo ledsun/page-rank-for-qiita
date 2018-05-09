@@ -13,7 +13,7 @@ const startSearh = require('../lib/server/start-search')
 const journal = require('../lib/journal')
 const dummySocket = require('../lib/server/dummy-socket')
 
-const sessionStore = {}
+const sessionStore = new Map()
 
 const PORT = process.env.PORT || 3000
 const app = connect()
@@ -25,7 +25,10 @@ app
       const tag = (url.query.tag || '')
         .toLowerCase()
       const [sessionId, knownUrls] = sendIndex(req, res, journal, tag)
-      sessionStore[sessionId] = [tag || '', knownUrls]
+      sessionStore.set(sessionId, {
+        tag: tag || '',
+        knownUrls
+      })
     } else {
       next()
     }
@@ -43,7 +46,12 @@ wsServer.on('request', (request) => {
   const connection = request.accept(null, request.origin)
   connection.on('message', (message) => {
     if (message.type === 'utf8') {
-      const [tag, knownUrls] = sessionStore[message.utf8Data]
+      const sessionId = message.utf8Data
+      const {
+        tag,
+        knownUrls
+      } = sessionStore.get(sessionId)
+      sessionStore.delete(sessionId)
       startSearh(connection, tag, knownUrls, journal, 300)
     }
   })
