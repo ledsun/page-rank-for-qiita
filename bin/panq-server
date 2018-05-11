@@ -7,6 +7,7 @@ const WebSocketServer = require('websocket')
 const connect = require('connect')
 const compression = require('compression')
 const serveStatic = require('serve-static')
+const morgan = require('morgan')
 
 const sendIndex = require('../lib/server/send-index')
 const startSearh = require('../lib/server/start-search')
@@ -19,6 +20,7 @@ const sessionStore = new SessionStore()
 const PORT = process.env.PORT || 3000
 const app = connect()
 app
+  .use(morgan('common'))
   .use(compression())
   .use('/', (req, res, next) => {
     const url = parser.parse(req.url, true)
