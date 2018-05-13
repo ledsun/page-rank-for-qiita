@@ -6,7 +6,7 @@ PEM=$2
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   # Install Node.js.
   sudo yum update -y
-  curl --silent --location https://rpm.nodesource.com/setup_9.x | sudo bash -
+  curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
   sudo yum -y install nodejs
   sudo yum -y install git
   sudo yum -y install gcc-c++
