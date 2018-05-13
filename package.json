@@ -32,7 +32,8 @@
     "bin/*",
     "lib/**",
     "public/index.*",
-    "public/*.css"
+    "public/*.css",
+    "public/healthcheck"
   ],
   "homepage": "https://github.com/ledsun/page-rank-for-qiita#readme",
   "keywords": [],
