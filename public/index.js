@@ -185,6 +185,7 @@
       if (target.closest('.preview__open-in-qiita')) {
         e.preventDefault()
         e.stopPropagation()
+        preview.hide()
         window.open(preview.url, '_blank')
       }
 
