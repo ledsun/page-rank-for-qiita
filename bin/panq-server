@@ -12,8 +12,7 @@ const SessionStore = require('../lib/server/session-store')
 const journal = require('../lib/journal')
 const panqServer = require('../lib/server/panq-server')
 const onWebSocketRequest = require('../lib/server/on-web-socket-request')
-const startSearh = require('../lib/server/start-search')
-const dummySocket = require('../lib/server/dummy-socket')
+const autoSearch = require('../lib/server/auto-search')
 
 const PORT = process.env.PORT || 3000
 const sessionStore = new SessionStore()
@@ -35,32 +34,7 @@ const wsServer = new WebSocketServer({
 wsServer.on('request', onWebSocketRequest(sessionStore, journal))
 httpServer.listen(PORT, () => console.log(new Date(), `Server running at port:${PORT}`))
 
-// 自動検索
-setTimeout(() => {
-  const already = new Set()
-
-  // 前回の検索でみつかたタグを対象にする
-  dummySocket.done((tags) => {
-    // 一定数以上見つかったら停止
-    if (already.size > 300) {
-      console.log(new Date(), 'Finish auto search.')
-      return
-    }
-
-    // すでに検索済みのタグはスキップ
-    const next = tags.filter((t) => !already.has(t))
-    if (next.length) {
-      already.add(next[0])
-      setTimeout(() => startSearh(dummySocket, next[0], new Set(), journal, 30), 100)
-    } else {
-      console.log(new Date(), 'Finish auto search. There is no more tag.')
-    }
-  })
-
-  // 最初にタグなしで検索
-  already.add('')
-  startSearh(dummySocket, '', new Set(), journal)
-}, 100)
+setTimeout(() => autoSearch(journal), 100)
 
 // 定期的にメモリ使用量を吐き出す
 setInterval(() => {
