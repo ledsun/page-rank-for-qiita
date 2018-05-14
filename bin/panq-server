@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const http = require('http')
-const parser = require('url')
 const WebSocketServer = require('websocket')
   .server
 const connect = require('connect')
@@ -9,7 +8,7 @@ const compression = require('compression')
 const serveStatic = require('serve-static')
 const morgan = require('morgan')
 
-const sendIndex = require('../lib/server/send-index')
+const panqServer = require('../lib/server/panq-server')
 const onWebSocketRequest = require('../lib/server/on-web-socket-request')
 const startSearh = require('../lib/server/start-search')
 const journal = require('../lib/journal')
@@ -23,20 +22,7 @@ const app = connect()
 app
   .use(morgan('common'))
   .use(compression())
-  .use('/', (req, res, next) => {
-    const url = parser.parse(req.url, true)
-    if (url.pathname === '/' || url.pathname === '/index.html') {
-      const tag = (url.query.tag || '')
-        .toLowerCase()
-      const [sessionId, knownUrls] = sendIndex(req, res, journal, tag)
-      sessionStore.set(sessionId, {
-        tag: tag || '',
-        knownUrls
-      })
-    } else {
-      next()
-    }
-  })
+  .use('/', panqServer(sessionStore, journal))
   .use(serveStatic(`${__dirname}/../public`, {
     immutable: true,
     maxAge: '1h'
