@@ -55,7 +55,10 @@ wsServer.on('request', (request) => {
           tag,
           knownUrls
         } = sessionStore.get(sessionId)
-        startSearh(connection, tag, knownUrls, journal, 300)
+        const stop = startSearh(connection, tag, knownUrls, journal, 300)
+
+        // WebSocketがクライアント側から閉じられたときに検索を中止
+        connection.on('close', stop)
       } else {
         connection.close()
       }
