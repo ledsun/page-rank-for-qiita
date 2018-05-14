@@ -8,17 +8,17 @@ const compression = require('compression')
 const serveStatic = require('serve-static')
 const morgan = require('morgan')
 
+const SessionStore = require('../lib/server/session-store')
+const journal = require('../lib/journal')
 const panqServer = require('../lib/server/panq-server')
 const onWebSocketRequest = require('../lib/server/on-web-socket-request')
 const startSearh = require('../lib/server/start-search')
-const journal = require('../lib/journal')
 const dummySocket = require('../lib/server/dummy-socket')
-const SessionStore = require('../lib/server/session-store')
-
-const sessionStore = new SessionStore()
 
 const PORT = process.env.PORT || 3000
+const sessionStore = new SessionStore()
 const app = connect()
+
 app
   .use(morgan('common'))
   .use(compression())
