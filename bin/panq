@@ -5,7 +5,7 @@ const RecentItemsStream = require('../lib/recent-items-stream')
 const FetchPageRankStream = require('../lib/fetch-page-rank-stream')
 const HasPageRankStream = require('../lib/has-page-rank-stream')
 const CalculatePageRankStream = require('../lib/calculate-page-rank-stream')
-const templateStream = require('../lib/template-stream')
+const templateStream = require('../lib/cli/template-stream')
 const LimitStream = require('../lib/limit-stream')
 const journal = require('../lib/journal')
 
@@ -18,8 +18,8 @@ const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream, 30)
 const pageRankStream = pageStream
   .pipe(recentItemsStream)
   .pipe(fetchPageRankStream)
-  .pipe(new HasPageRankStream())
   .pipe(new CalculatePageRankStream())
+  .pipe(new HasPageRankStream())
   .pipe(templateStream)
 
 pageRankStream.pipe(limitStream)
