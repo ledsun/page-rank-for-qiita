@@ -10,6 +10,7 @@ const serveStatic = require('serve-static')
 const morgan = require('morgan')
 
 const sendIndex = require('../lib/server/send-index')
+const onWebSocketRequest = require('../lib/server/on-web-socket-request')
 const startSearh = require('../lib/server/start-search')
 const journal = require('../lib/journal')
 const dummySocket = require('../lib/server/dummy-socket')
@@ -45,26 +46,7 @@ const wsServer = new WebSocketServer({
   httpServer
 })
 
-wsServer.on('request', (request) => {
-  const connection = request.accept(null, request.origin)
-  connection.on('message', (message) => {
-    if (message.type === 'utf8') {
-      const sessionId = message.utf8Data
-      if (sessionStore.has(sessionId)) {
-        const {
-          tag,
-          knownUrls
-        } = sessionStore.get(sessionId)
-        const stop = startSearh(connection, tag, knownUrls, journal, 300)
-
-        // WebSocketがクライアント側から閉じられたときに検索を中止
-        connection.on('close', stop)
-      } else {
-        connection.close()
-      }
-    }
-  })
-})
+wsServer.on('request', onWebSocketRequest(sessionStore, journal))
 httpServer.listen(PORT, () => console.log(new Date(), `Server running at port:${PORT}`))
 
 // 自動検索
