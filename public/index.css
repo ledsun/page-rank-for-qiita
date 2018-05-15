@@ -1,9 +1,16 @@
 body {
+  background-color: black;
   display: flex;
   justify-content: center;
 }
 
+a {
+  color: red;
+}
+
 .fdb-block {
+  background-color: black;
+  color: white;
   font-family: sans-serif;
   padding: 20px 0;
 }
