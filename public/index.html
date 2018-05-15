@@ -1,7 +1,7 @@
 <html lang="ja">
 
 <head>
-  <title>panq</title>
+  <title>PANQ あなたの知らない、Qiitaの良記事</title></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="panq-session-id" content="{{sessionId}}">
@@ -50,29 +50,25 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <h2><a href="/">Page rANk on Qiita</a></h2>
+            <h2><a href="/">Pretty Articles you do Not know from Qiita</a></h2>
           </div>
 
           <div class="col-12 text-center">
-            <p>Qiitaからストック情報を探す検索エンジン</p>
+            <p>あなたの知らない、Qiitaの良記事</p>
           </div>
         </div>
+      </div>
+    </section>
 
+    <section class="fdb-block">
+      <div class="container">
         <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-6 text-center">
-            <form class="form" action="/" method="get">
-              <div class="input-group mt-4 mb-4">
-                <input type="text" class="form-control" name="tag" placeholder="タグ名">
-                <span class="input-group-btn">
-                    <button class="btn">検索開始</button>
-                  </span>
-              </div>
-            </form>
-            <div class="col-12">
-              <h3>次のタグで検索</h3>
-            </div>
-            {{#each recentTags}}<a class="query-history" href="/?tag={{encoded}}">{{tag}}({{count}})</a> {{/each}}
+          <div class="col-12 text-center">
+            <h3>良い記事が見つかるキーワード（括弧内はオススメ記事数）</h3>
           </div>
+          <div class="col-12 text-center">
+            {{#each recentTags}}<a class="query-history" href="/?tag={{encoded}}">{{tag}}({{count}})</a> {{/each}}
+        </div>
         </div>
       </div>
     </section>
@@ -81,25 +77,46 @@
       <div id="app" class="container">
         <div class="row text-center">
           <div class="col-12">
-            <h3><span class="search-condition">{{tag}}</span>で<span class="number-of-results">\{{results.size}}</span>件（<span class="items mr-1">{{knownUrls}}</span>件中）を検索<span class="status">中</span> </h3>
+            <h3><span class="search-condition">{{tag}}</span>で<span class="number-of-results">\{{results.size}}</span>件のオススメ記事を（<span class="items mr-1">{{knownUrls}}</span>件の記事から）を抽出<span class="status">中</span> </h3>
           </div>
         </div>
         <div class="row text-left justify-content-center">
-          <ol class="resut-list">
-            <li v-for="result in resultList" :key="result.url">
-              <div class="col-12">
-                <a :href="result.url" class="results__item-link" target="_blank" rel="noopener">\{{result.title}}</a>
-                \{{result.updated_at.split('T')[0]}}
-                <span class="badge badge-pill badge-light">\{{result.ratio}}</span>
-                <ul class="results__tag-list">
-                  <li v-for="tag in result.tags"><a :href="'/?tag=' + tag.encoded" class="badge badge-secondary mr-1">\{{tag.text}}</a></li>
-                </ul>
-              </div>
-            </li>
-          </ol>
+          <div class="col-12">
+            <ol class="resut-list">
+              <li v-for="result in resultList" :key="result.url">
+                <div class="mb-3">
+                  <a :href="result.url" class="results__item-link" target="_blank" rel="noopener">\{{result.title}}</a>
+                  <span class="badge badge-pill badge-light">オススメ度 \{{result.ratio}}</span>
+                  <span class="badge badge-pill badge-light">更新日 \{{result.updated_at.split('T')[0]}}</span>
+                  <ul class="results__tag-list">
+                    <li v-for="tag in result.tags"><a :href="'/?tag=' + tag.encoded" class="results__tag btn btn-sm btn-secondary mt-1 mr-1 mb-1">\{{tag.text}}</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
+
+    <section class="fdb-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <h3>記事のタグ情報で絞り込み</h3>
+            <form class="form" action="/" method="get">
+              <div class="input-group mt-4 mb-4">
+                <input type="text" class="form-control" name="tag" placeholder="タグ名">
+                <span class="input-group-btn">
+                    <button class="btn">検索開始</button>
+                  </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="fdb-block" data-block-type="contents" data-id="6">
       <div class="container">
         <div class="row justify-content-center">
@@ -107,7 +124,7 @@
             <h2>About</h2>
           </div>
 
-          <div class="col-12 col-md-8 col-lg-6 text-center text-center">
+          <div class="col-12 text-center text-center">
             <p>ストック情報とは？技術情報にはフロー情報とストック情報があります。フロー情報は最新の話題の情報です。ストック情報は古くても信頼できる情報です。 現在のQiitaの検索機能はフロー情報に特化しています。 ストック情報はどうすれば探せるでしょうか？ 学術論文の世界では「被引用数」を使って論文を評価する文化があります。</p>
             <p>同様の発想で、Qiitaから被参照数が1以上の記事を探す検索エンジンを作りました。
             </p>
@@ -117,6 +134,7 @@
       </div>
     </section>
   </div>
+
   <div class="preview">
     <iframe></iframe>
     <div class="preview__open-in-qiita">

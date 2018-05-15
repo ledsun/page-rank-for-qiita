@@ -4,10 +4,19 @@ body {
 }
 
 .fdb-block {
+  font-family: sans-serif;
   padding: 20px 0;
 }
 
+.fdb-block h3 {
+  word-break: keep-all;
+}
+
 .query-history {
+  text-transform: capitalize;
+}
+
+.search-condition {
   text-transform: capitalize;
 }
 
@@ -23,7 +32,7 @@ body {
 }
 
 .results__tag {
-  margin-left: 10px
+  text-transform: capitalize;
 }
 
 .preview {
