@@ -59,7 +59,7 @@
   function scrollToSearchResult() {
     // クエリ文字列がない時はスクロールしない
     if (getTagName()) {
-      window.scroll(0, document.querySelector('.items')
+      window.scroll(0, document.querySelector('.search-condition')
         .getBoundingClientRect()
         .top - document.body.getBoundingClientRect()
         .top)
