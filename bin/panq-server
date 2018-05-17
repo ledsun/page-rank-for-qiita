@@ -14,12 +14,13 @@ const panqServer = require('../lib/server/panq-server')
 const onWebSocketRequest = require('../lib/server/on-web-socket-request')
 const autoSearch = require('../lib/server/auto-search')
 
+const LOG_FORMAT = ":date[iso] :remote-addr :req[x-forwarded-for] ':method :url HTTP/:http-version' :status"
 const PORT = process.env.PORT || 3000
 const sessionStore = new SessionStore()
 const app = connect()
 
 app
-  .use(morgan('common'))
+  .use(morgan(LOG_FORMAT))
   .use(compression())
   .use('/', panqServer(sessionStore, journal))
   .use(serveStatic(`${__dirname}/../public`, {
