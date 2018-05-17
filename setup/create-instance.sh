@@ -23,5 +23,5 @@ aws ec2 create-tags --profile panq --resources $INSTANCE_ID --tags Key=Name,Valu
 # その後の手順のナビゲーション
 echo ssh login: ssh -i $PEM ec2-user@$IP_ADDRESS
 echo open browser: open http://$IP_ADDRESS
-echo enable the instance: ./setup/blue-green-deployment.sh $INSTANCE_ID
 echo delete the instance: aws ec2 terminate-instances --profile panq --instance-ids $INSTANCE_ID
+echo enable the instance: ./setup/blue-green-deployment.sh $INSTANCE_ID
