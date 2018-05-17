@@ -38,5 +38,8 @@ httpServer.listen(PORT, () => console.log(new Date(), `Server running at port:${
 
 setTimeout(() => autoSearch(journal), 100)
 
+// 起動直後のメモリ使用量
+logMemoryUsage()
+
 // 定期的にメモリ使用量を吐き出す
 setInterval(logMemoryUsage, 5 * 60 * 1000)
