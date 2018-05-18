@@ -19,15 +19,17 @@ const LOG_FORMAT = ":date[iso] :remote-addr :req[x-forwarded-for] ':method :url 
 const PORT = process.env.PORT || 3000
 const sessionStore = new SessionStore()
 const app = connect()
+const staticConfig = {
+  immutable: true,
+  maxAge: '1h'
+}
 
 app
   .use(morgan(LOG_FORMAT))
   .use(compression())
   .use('/', panqServer(sessionStore, journal))
-  .use(serveStatic(`${__dirname}/../public`, {
-    immutable: true,
-    maxAge: '1h'
-  }))
+  .use(serveStatic(`${__dirname}/../public`, staticConfig))
+  .use(serveStatic(`${process.cwd()}/data/public`, staticConfig))
 const httpServer = http.createServer(app)
 const wsServer = new WebSocketServer({
   httpServer
