@@ -2,7 +2,7 @@
 
 const PageStream = require('../lib/page-stream')
 const RecentItemsStream = require('../lib/recent-items-stream')
-const FetchPageRankStream = require('../lib/fetch-page-rank-stream')
+const FetchItemAttributesStream = require('../lib/fetch-item-attributes-stream')
 const HasPageRankStream = require('../lib/has-page-rank-stream')
 const CalculatePageRankStream = require('../lib/calculate-page-rank-stream')
 const templateStream = require('../lib/cli/template-stream')
@@ -12,12 +12,12 @@ const journal = require('../lib/journal')
 const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const recentItemsStream = new RecentItemsStream(pageStream, new Set())
-const fetchPageRankStream = new FetchPageRankStream(journal)
-const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream, 30)
+const fetchItemAttributesStream = new FetchItemAttributesStream(journal)
+const limitStream = new LimitStream(recentItemsStream, fetchItemAttributesStream, 30)
 
 const pageRankStream = pageStream
   .pipe(recentItemsStream)
-  .pipe(fetchPageRankStream)
+  .pipe(fetchItemAttributesStream)
   .pipe(new CalculatePageRankStream())
   .pipe(new HasPageRankStream())
   .pipe(templateStream)
