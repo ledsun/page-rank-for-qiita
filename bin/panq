@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const PageStream = require('../lib/page-stream')
-const RecentItemsStream = require('../lib/recent-items-stream')
+const FetchItemListStream = require('../lib/fetch-item-list-stream')
 const FetchItemAttributesStream = require('../lib/fetch-item-attributes-stream')
 const HasPageRankStream = require('../lib/has-page-rank-stream')
 const CalculatePageRankStream = require('../lib/calculate-page-rank-stream')
@@ -11,12 +11,12 @@ const journal = require('../lib/journal')
 
 const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
-const recentItemsStream = new RecentItemsStream(pageStream, new Set())
+const fetchItemListStream = new FetchItemListStream(pageStream, new Set())
 const fetchItemAttributesStream = new FetchItemAttributesStream(journal)
-const limitStream = new LimitStream(recentItemsStream, fetchItemAttributesStream, 30)
+const limitStream = new LimitStream(fetchItemListStream, fetchItemAttributesStream, 30)
 
 const pageRankStream = pageStream
-  .pipe(recentItemsStream)
+  .pipe(fetchItemListStream)
   .pipe(fetchItemAttributesStream)
   .pipe(new CalculatePageRankStream())
   .pipe(new HasPageRankStream())
