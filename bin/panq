@@ -12,7 +12,7 @@ const journal = require('../lib/journal')
 const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const recentItemsStream = new RecentItemsStream(pageStream, new Set())
-const fetchPageRankStream = new FetchPageRankStream(journal.itemMap)
+const fetchPageRankStream = new FetchPageRankStream(journal)
 const limitStream = new LimitStream(recentItemsStream, fetchPageRankStream, 30)
 
 const pageRankStream = pageStream
