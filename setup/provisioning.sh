@@ -17,6 +17,9 @@ EOF
 # Send secrets
 scp -i $PEM .env ec2-user@$HOST:.
 
+# Send data
+rsync -rav -e "ssh -i $PEM" data ec2-user@$HOST:.
+
 # Setup the server
 ssh -oStrictHostKeyChecking=no -i $PEM ec2-user@$HOST << EOF
   source .env
