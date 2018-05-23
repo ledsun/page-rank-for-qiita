@@ -2,6 +2,7 @@
 
 const PageStream = require('../lib/page-stream')
 const FetchItemListStream = require('../lib/fetch-item-list-stream')
+const RejectIgnoreItemStream = require('../lib/reject-ignore-item-stream')
 const MergeItemMapStream = require('../lib/merge-item-map-stream')
 const FetchItemStream = require('../lib/fetch-item-stream')
 const AnalyzeHtmlStream = require('../lib/analyze-html-stream')
@@ -16,13 +17,14 @@ const JournalStream = require('../lib/journal-stream')
 const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const fetchItemListStream = new FetchItemListStream(pageStream, new Set())
-const mergeItemMapStream = new MergeItemMapStream(journal.itemMap)
-const limitStream = new LimitStream(fetchItemListStream, mergeItemMapStream, 30)
+const rejectIgnoreItemStream = new RejectIgnoreItemStream(journal.ignoreItems)
+const limitStream = new LimitStream(fetchItemListStream, rejectIgnoreItemStream, 30)
 
 const pageRankStream = pageStream
   .pipe(fetchItemListStream)
-  .pipe(mergeItemMapStream)
-  .pipe(new FetchItemStream(journal.ignoreItems))
+  .pipe(rejectIgnoreItemStream)
+  .pipe(new MergeItemMapStream(journal.itemMap))
+  .pipe(new FetchItemStream())
   .pipe(new AnalyzeHtmlStream())
   .pipe(new CalculatePageRankStream())
 
