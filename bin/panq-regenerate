@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+const readdirp = require('readdirp')
+const ReadHtmlStream = require('../lib/read-html-stream')
+const ParseHtmlStream = require('../lib/parse-html-stream')
+const AnalyzeHtmlStream = require('../lib/analyze-html-stream')
+const CalculatePageRankStream = require('../lib/calculate-page-rank-stream')
+const journal = require('../lib/journal')
+const JournalStream = require('../lib/journal-stream')
+
+const dir = `${process.cwd()}/data/public/cache`
+const stream = readdirp({
+  root: dir,
+  fileFilter: '*.html'
+})
+
+stream
+  .pipe(new ReadHtmlStream())
+  .pipe(new ParseHtmlStream())
+  .pipe(new AnalyzeHtmlStream())
+  .pipe(new CalculatePageRankStream())
+  .pipe(new JournalStream(journal.write))

@@ -3,7 +3,8 @@
   "version": "1.0.3",
   "bin": {
     "panq": "bin/panq",
-    "panq-server": "bin/panq-server"
+    "panq-server": "bin/panq-server",
+    "panq-regenerate": "bin/panq-regenerate"
   },
   "bugs": {
     "url": "https://github.com/ledsun/page-rank-for-qiita/issues"
@@ -16,6 +17,7 @@
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "parse5": "^4.0.0",
+    "readdirp": "^2.1.0",
     "request": "^2.86.0",
     "request-promise": "^4.2.2",
     "serve-static": "^1.13.2",
