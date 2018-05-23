@@ -10,6 +10,7 @@ const CacheHtmlStream = require('../lib/cache-html-stream')
 const templateStream = require('../lib/cli/template-stream')
 const LimitStream = require('../lib/limit-stream')
 const journal = require('../lib/journal')
+const JournalStream = require('../lib/journal-stream')
 
 const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
@@ -22,10 +23,14 @@ const pageRankStream = pageStream
   .pipe(fetchItemStream)
   .pipe(new AnalyzeHtmlStream(journal.itemMap))
   .pipe(new CalculatePageRankStream())
+
+pageRankStream.pipe(new JournalStream(journal.write))
+
+const foundItemSteram = pageRankStream
   .pipe(new HasPageRankStream())
 
-pageRankStream.pipe(limitStream)
-pageRankStream.pipe(new CacheHtmlStream())
-pageRankStream
+foundItemSteram.pipe(limitStream)
+foundItemSteram.pipe(new CacheHtmlStream())
+foundItemSteram
   .pipe(templateStream)
   .pipe(process.stdout)
