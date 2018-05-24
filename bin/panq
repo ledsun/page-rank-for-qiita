@@ -18,7 +18,7 @@ const TAG = process.argv[2] || ''
 const pageStream = new PageStream(TAG)
 const fetchItemListStream = new FetchItemListStream(pageStream, new Set())
 const rejectIgnoreItemStream = new RejectIgnoreItemStream(journal.ignoreItems)
-const limitStream = new LimitStream(fetchItemListStream, rejectIgnoreItemStream, 30)
+const limitStream = new LimitStream(fetchItemListStream, rejectIgnoreItemStream, 50)
 
 const pageRankStream = pageStream
   .pipe(fetchItemListStream)
