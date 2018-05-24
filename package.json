@@ -17,7 +17,6 @@
     "libxmljs": "^0.18.9-pre0",
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
-    "parse5": "^4.0.0",
     "readdirp": "^2.1.0",
     "request": "^2.86.0",
     "request-promise": "^4.2.2",
@@ -25,10 +24,7 @@
     "sleep-promise": "^6.0.0",
     "stringstream": "0.0.6",
     "uuid": "^3.2.1",
-    "websocket": "^1.0.26",
-    "xmldom": "^0.1.27",
-    "xmlserializer": "^0.6.1",
-    "xpath": "0.0.27"
+    "websocket": "^1.0.26"
   },
   "devDependencies": {},
   "files": [
