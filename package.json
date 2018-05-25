@@ -14,7 +14,7 @@
     "connect": "^3.6.6",
     "event-stream": "^3.3.4",
     "handlebars": "^4.0.11",
-    "libxmljs": "^0.18.9-pre0",
+    "libxmljs": "^0.18.8",
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "readdirp": "^2.1.0",
