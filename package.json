@@ -4,7 +4,8 @@
   "bin": {
     "panq": "bin/panq",
     "panq-server": "bin/panq-server",
-    "panq-regenerate": "bin/panq-regenerate"
+    "panq-regenerate": "bin/panq-regenerate",
+    "panq-regenerate-fork": "bin/panq-regenerate-fork"
   },
   "bugs": {
     "url": "https://github.com/ledsun/page-rank-for-qiita/issues"

@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const {
+  fork
+} = require('child_process')
+const readdirp = require('readdirp')
+
+// 引数で指定した数のワーカープロセス数を起動
+const number = process.argv[2] ? Number(process.argv[2]) : 1
+const program = path.resolve('./lib/regenerate-process.js')
+const processes = []
+for (var i = 0; i < number; i++) {
+  processes.push(fork(program, [], {
+    stdio: ['ignore', 'ignore', process.stderr, 'ipc']
+  }))
+}
+
+// フォルダ内のファイル一覧を取得
+const dir = `${process.cwd()}/data/public/cache`
+const stream = readdirp({
+  root: dir,
+  fileFilter: '*.html'
+})
+
+// 子プロセスでパース
+let count = 0
+stream.on('data', (data) => {
+  // ラウンドロビンでファイルを配布
+  count++;
+  processes[count % processes.length].send(data)
+})
+
+// 終わったら終了メッセージを送る。
+// 子プロセスは、パースし終わりしだいプロセス終了するため、メッセージイベント監視をやめる
+stream.on('end', () => {
+  for (const subProcess of processes) {
+    subProcess.send('finish')
+  }
+  console.log(`${count} files found`)
+})
+
+console.log(`start ${number} processes`)
