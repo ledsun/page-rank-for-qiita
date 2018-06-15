@@ -8,7 +8,7 @@ const readdirp = require('readdirp')
 
 // 引数で指定した数のワーカープロセス数を起動
 const number = process.argv[2] ? Number(process.argv[2]) : 1
-const program = path.resolve('./lib/regenerate-process.js')
+const program = path.resolve( __dirname , '../lib/regenerate-process.js')
 const processes = []
 for (var i = 0; i < number; i++) {
   processes.push(fork(program, [], {
