@@ -3,6 +3,7 @@
 const readdirp = require('readdirp')
 const ReadHtmlStream = require('../lib/read-html-stream')
 const ParseHtmlStream = require('../lib/parse-html-stream')
+const AnalyzeHtmlItemMetaInfoStream = require('../lib/analyze-html-item-meta-info-stream')
 const AnalyzeHtmlStream = require('../lib/analyze-html-stream')
 const CalculatePageRankStream = require('../lib/calculate-page-rank-stream')
 const journal = require('../lib/journal')
@@ -17,6 +18,7 @@ const stream = readdirp({
 stream
   .pipe(new ReadHtmlStream())
   .pipe(new ParseHtmlStream())
+  .pipe(new AnalyzeHtmlItemMetaInfoStream())
   .pipe(new AnalyzeHtmlStream())
   .pipe(new CalculatePageRankStream())
   .pipe(new JournalStream(journal.write))
