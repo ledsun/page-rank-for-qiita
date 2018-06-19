@@ -4,7 +4,7 @@
 # https://github.com/stedolan/jq/wiki/Installation
 PEM=panq.pem
 
-INSTANCE_ID=$(aws ec2 run-instances --image-id ami-8fbab2f3 --count 1 --instance-type t2.micro --key-name panq --security-group-ids sg-9e0de1e6 --subnet-id subnet-6bca3b1c --profile panq |jq -r .Instances[].InstanceId
+INSTANCE_ID=$(aws ec2 run-instances --image-id ami-2724cf58 --count 1 --instance-type t2.nano --key-name panq --security-group-ids sg-9e0de1e6 --subnet-id subnet-6bca3b1c --profile panq |jq -r .Instances[].InstanceId
 )
 
 echo $INSTANCE_ID was created
